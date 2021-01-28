@@ -24,6 +24,7 @@ class Common(Configuration):
 
         # Your apps
         'bikes.users',
+        'bikes',
 
     )
 
