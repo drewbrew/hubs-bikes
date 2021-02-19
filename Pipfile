@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pytz = "*"
+django-configurations = "*"
+gunicorn = "*"
+newrelic = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
+django-model-utils = "*"
+django-unique-upload = "*"
+djangorestframework = "*"
+django-filter = "*"
+django-nose = "*"
+django-storages = "*"
+boto3 = "*"
+Django = "*"
+Pillow = "*"
+Markdown = "*"
+
+[dev-packages]
+ipdb = "*"
+ipython = "*"
+mkdocs = "*"
+flake8 = "*"
+mock = "*"
+factory-boy = "*"
+nose-progressive = "*"
+coverage = "*"
+
+[requires]
+python_version = "3.9"
