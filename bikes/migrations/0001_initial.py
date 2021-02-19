@@ -16,46 +16,125 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Bike',
+            name="Bike",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('model', models.CharField(blank=True, max_length=100)),
-                ('serial_number', models.CharField(max_length=100)),
-                ('picture', models.ImageField(upload_to='')),
-                ('status', models.CharField(choices=[('new', 'New'), ('needs_repair', 'Needs Repair'), ('ready_for_sale', 'Ready For Sale'), ('sold', 'Sold'), ('ready_to_scrap', 'Ready To Scrap'), ('dismantled', 'Dismantled')], default='new', max_length=50)),
-                ('frame_size', models.CharField(blank=True, max_length=20)),
-                ('wheel_size', models.PositiveSmallIntegerField(blank=True, null=True)),
-                ('tube_fitting', models.CharField(choices=[('S', 'Schrader'), ('P', 'Presta')], default='s', max_length=1)),
-                ('brake_type', models.CharField(choices=[('none', 'None'), ('coaster', 'Coaster'), ('rim', 'Rim'), ('disc', 'Disc')], max_length=10)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("model", models.CharField(blank=True, max_length=100)),
+                ("serial_number", models.CharField(max_length=100)),
+                ("picture", models.ImageField(upload_to="")),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("new", "New"),
+                            ("needs_repair", "Needs Repair"),
+                            ("ready_for_sale", "Ready For Sale"),
+                            ("sold", "Sold"),
+                            ("ready_to_scrap", "Ready To Scrap"),
+                            ("dismantled", "Dismantled"),
+                        ],
+                        default="new",
+                        max_length=50,
+                    ),
+                ),
+                ("frame_size", models.CharField(blank=True, max_length=20)),
+                ("wheel_size", models.PositiveSmallIntegerField(blank=True, null=True)),
+                (
+                    "tube_fitting",
+                    models.CharField(
+                        choices=[("S", "Schrader"), ("P", "Presta")],
+                        default="s",
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "brake_type",
+                    models.CharField(
+                        choices=[
+                            ("none", "None"),
+                            ("coaster", "Coaster"),
+                            ("rim", "Rim"),
+                            ("disc", "Disc"),
+                        ],
+                        max_length=10,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Make',
+            name="Make",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Repair',
+            name="Repair",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('time_started', models.DateTimeField(default=django.utils.timezone.now)),
-                ('time_finished', models.DateTimeField(blank=True, null=True)),
-                ('action', models.TextField()),
-                ('before_picture', models.ImageField(upload_to='')),
-                ('after_picture', models.ImageField(upload_to='')),
-                ('bike', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='repairs', to='bikes.bike')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='repairs_performed', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "time_started",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
+                ("time_finished", models.DateTimeField(blank=True, null=True)),
+                ("action", models.TextField()),
+                ("before_picture", models.ImageField(upload_to="")),
+                ("after_picture", models.ImageField(upload_to="")),
+                (
+                    "bike",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="repairs",
+                        to="bikes.bike",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="repairs_performed",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='bike',
-            name='make',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='bikes', to='bikes.make'),
+            model_name="bike",
+            name="make",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="bikes",
+                to="bikes.make",
+            ),
         ),
         migrations.AddConstraint(
-            model_name='bike',
-            constraint=models.UniqueConstraint(fields=('make', 'serial_number'), name='make-serial_number'),
+            model_name="bike",
+            constraint=models.UniqueConstraint(
+                fields=("make", "serial_number"), name="make-serial_number"
+            ),
         ),
     ]

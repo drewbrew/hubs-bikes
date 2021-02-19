@@ -2,14 +2,15 @@ from django.contrib import admin
 
 from .models import Bike, Make, Repair
 
+
 class BikeAdmin(admin.ModelAdmin):
-    list_select_related = ['make']
-    list_display = ['id', 'make', 'model', 'serial_number', 'status']
+    list_select_related = ["make"]
+    list_display = ["id", "make", "model", "serial_number", "status"]
 
 
 class RepairAdmin(admin.ModelAdmin):
-    list_select_related = ['user', 'bike__make']
-    list_display = ['id', 'bike', 'user', 'time_finished']
+    list_select_related = ["user", "bike__make"]
+    list_display = ["id", "bike", "user", "time_finished"]
 
 
 admin.site.register(Make)
