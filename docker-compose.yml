@@ -10,9 +10,9 @@ services:
     image: web
     build: ./
     command: >
-      bash -c "python wait_for_postgres.py &&
-               ./manage.py migrate &&
-               ./manage.py runserver 0.0.0.0:8000"
+      bash -c "pipenv run python wait_for_postgres.py &&
+               pipenv run ./manage.py migrate &&
+               pipenv run ./manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./:/code
     ports:
@@ -21,8 +21,9 @@ services:
       - postgres
   documentation:
     restart: always
+    image: web
     build: ./
-    command: "mkdocs serve"
+    command: bash -c "pipenv install --dev && pipenv run mkdocs serve"
     volumes:
       - ./:/code
     ports:
