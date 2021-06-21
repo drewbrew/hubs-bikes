@@ -1,0 +1,31 @@
+{% extends 'theme/base.html' %}
+
+{% block content %}
+{% if user.is_anonymous %}
+Log in to see more details!
+{% else %}
+{% if user.is_staff %}
+<h1>Bikes</h1>
+{% else %}
+<h1>Bikes you've entered</h1>
+{% endif %}
+{% if bikes %}
+<table>
+<tr>
+<th>Make</th>
+<th>Model</th>
+<th>Serial Number</th>
+<th>Status</th>
+</tr>
+{% for bike in bikes %}
+<tr>
+<td>{{ bike.make }}</td>
+<td>{{ bike.model }}</td>
+<td>{{ bike.serial_number }}</td>
+<td>{{ bike.status }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}<strong>No bikes found!</strong>{% endif %}
+{% endif %}
+{% endblock %}
