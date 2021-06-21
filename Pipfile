@@ -20,6 +20,8 @@ boto3 = "*"
 Django = "*"
 Pillow = "*"
 Markdown = "*"
+crispy-tailwind = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 ipdb = "*"
