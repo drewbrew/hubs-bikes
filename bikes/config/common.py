@@ -23,6 +23,7 @@ class Common(Configuration):
         # Your apps
         "bikes.users",
         "bikes",
+        'theme',
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
