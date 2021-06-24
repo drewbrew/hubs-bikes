@@ -1,6 +1,9 @@
 FROM python:3.9
 ENV PYTHONUNBUFFERED 1
 
+# https://github.com/pypa/pipenv/issues/4174
+ENV PIPENV_VENV_IN_PROJECT 1
+
 # Allows docker to cache installed dependencies between builds
 RUN pip install --upgrade pip setuptools wheel pipenv
 
@@ -21,10 +24,16 @@ ENV NPM_BIN_PATH /usr/local/bin/npm
 # install deps from Pipfile.lock
 RUN pipenv install
 
+# build CSS
+RUN npm install
+RUN npm run build
+
+# google uses 8080 but django uses 8000
+# use 8080 as the default port unless otherwise set by google
+ENV PORT=${PORT:-8080}
+
 EXPOSE 8000
+EXPOSE $PORT
 
-
-# Migrates the database, builds CSS, uploads staticfiles, and runs the production server
-CMD npm run build && pipenv run ./manage.py migrate && \
-    pipenv run ./manage.py collectstatic --noinput && \
-    pipenv run newrelic-admin run-program gunicorn --bind 0.0.0.0:$PORT --access-logfile - hsv_dot_beer.wsgi:application
+# run the production server
+CMD pipenv run gunicorn --bind 0.0.0.0:$PORT --access-logfile - bikes.wsgi:application

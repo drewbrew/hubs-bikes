@@ -7,6 +7,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class Local(Common):
     DEBUG = True
 
+    DATABASES = {
+        "default": {
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": "",
+            "HOST": "postgres",
+            "PORT": 5432,
+            "CONN_MAX_AGE": 600,
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+        }
+    }
+
     # Testing
     INSTALLED_APPS = Common.INSTALLED_APPS
     INSTALLED_APPS += ("django_nose",)
