@@ -20,9 +20,12 @@ class Common(Configuration):
         "rest_framework",  # utilities for rest apis
         "rest_framework.authtoken",  # token authentication
         "django_filters",  # for filtering rest endpoints
+        "crispy_forms",
+        "crispy_tailwind",
         # Your apps
         "bikes.users",
         "bikes",
+        "theme",
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
@@ -190,3 +193,5 @@ class Common(Configuration):
             "rest_framework.authentication.TokenAuthentication",
         ),
     }
+
+    DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

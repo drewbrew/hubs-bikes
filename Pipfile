@@ -15,11 +15,15 @@ django-unique-upload = "*"
 djangorestframework = "*"
 django-filter = "*"
 django-nose = "*"
-django-storages = "*"
+django-storages = {extras = ["google"], version = "*"}
 boto3 = "*"
 Django = "*"
 Pillow = "*"
 Markdown = "*"
+crispy-tailwind = "*"
+django-crispy-forms = "*"
+django-environ = "*"
+google-cloud-secret-manager = "*"
 
 [dev-packages]
 ipdb = "*"
