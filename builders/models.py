@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import constraints
+
 
 # Create your models here.
 class Kid(models.Model):
