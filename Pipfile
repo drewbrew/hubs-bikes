@@ -14,7 +14,6 @@ django-model-utils = "*"
 django-unique-upload = "*"
 djangorestframework = "*"
 django-filter = "*"
-django-nose = "*"
 django-storages = {extras = ["google"], version = "*"}
 boto3 = "*"
 Django = "*"
@@ -32,8 +31,6 @@ mkdocs = "*"
 flake8 = "*"
 mock = "*"
 factory-boy = "*"
-nose-progressive = "*"
-coverage = "*"
 
 [requires]
 python_version = "3.9"
