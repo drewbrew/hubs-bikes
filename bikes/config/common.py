@@ -26,6 +26,7 @@ class Common(Configuration):
         "bikes.users",
         "bikes",
         "theme",
+        "builders",
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
