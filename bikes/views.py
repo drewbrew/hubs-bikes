@@ -1,8 +1,7 @@
 from django.views.generic.edit import CreateView, UpdateView
-from django.contrib.auth.decorators import login_required
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 
 from .forms import BikeForm
 from .models import Bike
