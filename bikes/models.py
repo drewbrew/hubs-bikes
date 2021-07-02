@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.urls import reverse
 
 
 class Make(models.Model):
@@ -94,6 +95,9 @@ class Bike(models.Model):
         on_delete=models.PROTECT,
     )
     notes = models.TextField(blank=True)
+
+    def get_absolute_url(self):
+        return reverse("bikes-update", kwargs={"pk": self.pk})
 
     def __str__(self):
         return " ".join(
