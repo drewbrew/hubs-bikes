@@ -4,28 +4,30 @@
 {% if user.is_anonymous %}
 Log in to see more details!
 {% else %}
-{% if user.is_staff %}
-<h1>Bikes</h1>
-{% else %}
-<h1>Bikes you've entered</h1>
-{% endif %}
+<h1 class="text-2xl">Bikes</h1>
 {% if bikes %}
-<table>
-<tr>
+<table class="table-auto">
+<thead>
+<tr class="bg-blue-200">
 <th>Make</th>
 <th>Model</th>
 <th>Serial Number</th>
 <th>Status</th>
 </tr>
+</thead>
+<tbody>
 {% for bike in bikes %}
 <tr>
 <td>{{ bike.make }}</td>
-<td>{{ bike.model }}</td>
+<td><a href="{{ bike.get_absolute_url }}">{{ bike.model }}</a></td>
 <td>{{ bike.serial_number }}</td>
 <td>{{ bike.status }}</td>
 </tr>
 {% endfor %}
+</tbody>
 </table>
-{% else %}<strong>No bikes found!</strong>{% endif %}
+{% else %}
+<strong>No bikes found!</strong>
+{% endif %}
 {% endif %}
 {% endblock %}
