@@ -1,0 +1,10 @@
+{% extends 'theme/base.html' %}
+
+{% block content %}
+<h1 class="text-2x1">{{ bike.make }} {{ bike.model }}</h1>
+
+{% if bike.picture %}<img src="{{ bike.picture.url }}">{% endif %}
+
+{{ form.as_p }}
+
+{% endblock content %}
