@@ -19,7 +19,7 @@ Log in to see more details!
 {% for bike in bikes %}
 <tr>
 <td>{{ bike.make }}</td>
-<td><a href="{{ bike.get_absolute_url }}">{{ bike.model }}</a></td>
+<td><a class="text-underline text-blue-600 hover:text-blue-700" href="{{ bike.get_absolute_url }}">{{ bike.model }}</a></td>
 <td>{{ bike.serial_number }}</td>
 <td>{{ bike.status }}</td>
 </tr>

@@ -1,9 +1,14 @@
+from crispy_forms.helper import FormHelper
 from django.forms import ModelForm
 
 from .models import Bike
 
 
 class BikeForm(ModelForm):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+
     class Meta:
         model = Bike
         exclude = [
