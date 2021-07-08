@@ -1,3 +1,4 @@
+import debug_toolbar
 from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
@@ -29,3 +30,8 @@ urlpatterns = [
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
     path("", home),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
