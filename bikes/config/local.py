@@ -26,10 +26,8 @@ class Local(Common):
 
     INSTALLED_APPS = Common.INSTALLED_APPS + ("debug_toolbar",)
     MIDDLEWARE = (
-        Common.MIDDLEWARE[:1]
-        + ("debug_toolbar.middleware.DebugToolbarMiddleware",)
-        + Common.MIDDLEWARE[1:]
-    )
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ) + Common.MIDDLEWARE
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": "bikes.toolbar_config.show_toolbar"
     }
