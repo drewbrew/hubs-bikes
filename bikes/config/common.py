@@ -21,12 +21,12 @@ class Common(Configuration):
         "rest_framework.authtoken",  # token authentication
         "django_filters",  # for filtering rest endpoints
         "crispy_forms",
-        "crispy_tailwind",
         # Your apps
         "bikes.users",
         "bikes",
         "theme",
         "builders",
+        "crispy_tailwind",
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
@@ -196,3 +196,7 @@ class Common(Configuration):
     }
 
     DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+    CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+    CRISPY_TEMPLATE_PACK = "tailwind"

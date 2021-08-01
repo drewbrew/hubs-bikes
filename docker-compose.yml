@@ -11,6 +11,7 @@ services:
     build: ./
     command: >
       bash -c "npm install && npm run build &&
+        pipenv install --dev &&
         pipenv run python wait_for_postgres.py &&
         pipenv run ./manage.py migrate &&
         pipenv run ./manage.py runserver 0.0.0.0:8000"
@@ -20,12 +21,3 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
-  documentation:
-    restart: always
-    image: web
-    build: ./
-    command: bash -c "pipenv install --dev && pipenv run mkdocs serve"
-    volumes:
-      - ./:/code
-    ports:
-      - "8001:8001"

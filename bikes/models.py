@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.urls import reverse
 
 
 class Make(models.Model):
@@ -94,6 +95,32 @@ class Bike(models.Model):
         on_delete=models.PROTECT,
     )
     notes = models.TextField(blank=True)
+
+    def clean(self) -> None:
+        timestamp = now()
+        if not self.intake_time:
+            self.intake_time = timestamp
+        if (
+            not self.marked_as_needing_repair_time
+            and self.status == self.BikeState.NEEDS_REPAIR
+        ):
+            self.marked_as_needing_repair_time = timestamp
+        if not self.dismantled_time and self.status == self.BikeState.DISMANTLED:
+            self.dismantled_time = timestamp
+        if not self.sold_time and self.status in [
+            self.BikeState.SOLD,
+            self.BikeState.EARNED,
+        ]:
+            self.sold_time = timestamp
+        if (
+            not self.marked_as_ready_for_sale_time
+            and self.status == self.BikeState.READY_FOR_SALE
+        ):
+            self.marked_as_ready_for_sale_time = timestamp
+        return super().clean()
+
+    def get_absolute_url(self):
+        return reverse("bikes-update", kwargs={"pk": self.pk})
 
     def __str__(self):
         return " ".join(

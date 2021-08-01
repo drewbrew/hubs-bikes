@@ -1,0 +1,11 @@
+{% extends 'theme/base.html' %}
+{% load tailwind_filters %}
+
+{% block content %}
+<h1 class="text-2x1">{{ bike.make }} {{ bike.model }}</h1>
+
+{% if bike.picture %}<img src="{{ bike.picture.url }}">{% endif %}
+
+{{ form | crispy }}
+
+{% endblock content %}
