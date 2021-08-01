@@ -5,7 +5,8 @@ from .common import Common
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-IN_TEST = sys.argv[1:2] == ['test']
+IN_TEST = sys.argv[1:2] == ["test"]
+
 
 class Local(Common):
     DEBUG = True
